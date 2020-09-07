@@ -1,10 +1,10 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"time"
-	"errors"
-	
+
 	"github.com/keonjeo/taskflow"
 )
 
@@ -36,7 +36,7 @@ func SerialAndParallelTaskDemo() {
 	serialTaskExecuteMethod := func(param interface{}) error {
 		time.Sleep(3 * time.Second)
 		for i := 0; i < 10; i++ {
-			fmt.Printf("Hi %v\n", param)
+			fmt.Printf("SerialTask => Hi %v\n", param)
 			time.Sleep(100 * time.Millisecond)
 		}
 		return errors.New("xx")
@@ -45,12 +45,41 @@ func SerialAndParallelTaskDemo() {
 	serialTaskRevertMethod := func(param interface{}) error {
 		time.Sleep(3 * time.Second)
 		for i := 0; i < 10; i++ {
-			fmt.Printf("Goodbye %v\n", param)
+			fmt.Printf("SerialTask => Goodbye %v\n", param)
 			time.Sleep(100 * time.Millisecond)
 		}
 		return nil
 	}
 
 	serialTask := taskflow.NewSerialTask("SerialTask Demo", "Pony", serialTaskExecuteMethod, serialTaskRevertMethod, []taskflow.ITask{task1, task2})
-	serialTask.Execute()
+
+	parallelTaskExecuteMethod := func(param interface{}) error {
+		time.Sleep(3 * time.Second)
+		for i := 0; i < 10; i++ {
+			fmt.Printf("ParallelTask => Hi %v\n", param)
+			time.Sleep(100 * time.Millisecond)
+		}
+		return errors.New("xx")
+	}
+
+	parallelTaskRevertMethod := func(param interface{}) error {
+		time.Sleep(3 * time.Second)
+		for i := 0; i < 10; i++ {
+			fmt.Printf("ParallelTask => Goodbye %v\n", param)
+			time.Sleep(100 * time.Millisecond)
+		}
+		return nil
+	}
+
+	parallelTask := taskflow.NewParallelTask("ParallelTask Demo", "Tony", parallelTaskExecuteMethod, parallelTaskRevertMethod, []taskflow.ITask{task1, task2})
+
+	noHandleFunc := func(param interface{}) error { return nil }
+	task := taskflow.NewSerialTask(
+		"SerialTask Demo",
+		"Pony",
+		noHandleFunc,
+		noHandleFunc,
+		[]taskflow.ITask{serialTask, parallelTask},
+	)
+	task.Execute()
 }

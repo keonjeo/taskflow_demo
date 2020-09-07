@@ -2,5 +2,7 @@ github.com/keonjeo/taskflow v0.0.0-20200904153938-654aa74d6b67 h1:0egr4vNhlBYFBJ
 github.com/keonjeo/taskflow v0.0.0-20200904153938-654aa74d6b67/go.mod h1:/hU5RB02czqZRP8WgTFCCGAw6ny0lyDw0Mk9imKv2c8=
 github.com/keonjeo/taskflow v1.0.0 h1:ftcYa8I5pRZKS7haU5wt/+k82R+RhdK/z4mdeyohSTA=
 github.com/keonjeo/taskflow v1.0.0/go.mod h1:/hU5RB02czqZRP8WgTFCCGAw6ny0lyDw0Mk9imKv2c8=
+github.com/keonjeo/taskflow v1.0.1 h1:7i2FdTsr262Bb0NWjQda0awaRdI5e30O7NMDC/LrwMc=
+github.com/keonjeo/taskflow v1.0.1/go.mod h1:/hU5RB02czqZRP8WgTFCCGAw6ny0lyDw0Mk9imKv2c8=
 github.com/satori/go.uuid v1.2.0 h1:0uYX9dsZ2yD7q2RtLRtPSdGDWzjeM3TbMJP9utgA0ww=
 github.com/satori/go.uuid v1.2.0/go.mod h1:dA0hQrYB0VpLJoorglMZABFdXlWrHn1NEOzdhQKdks0=
